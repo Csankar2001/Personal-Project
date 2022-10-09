@@ -1,0 +1,46 @@
+ 
+ 
+int led1 = 9;
+int led2 = 2;
+int led3 = 4;
+const int aqsensor = A0;
+ 
+int ppm ;
+void setup() {
+   
+  pinMode(aqsensor,INPUT); 
+  pinMode(led1,OUTPUT);
+  pinMode(led2,OUTPUT);
+  
+  Serial.begin(9600);
+   
+}
+void loop(){
+   int ppm = analogRead(aqsensor);
+ 
+  Serial.print("Air quality: ");
+  Serial.println(ppm);
+  
+
+  
+    if(ppm>400  ){
+    digitalWrite(led1,HIGH);
+    digitalWrite(led2,LOW);
+    digitalWrite(led3,LOW);
+    
+ 
+    }
+    else if(ppm>200){
+    digitalWrite(led2,HIGH);
+    digitalWrite(led1,LOW);
+    digitalWrite(led3,LOW);
+    }
+    else{
+    digitalWrite(led1,LOW);
+    digitalWrite(led2,LOW);
+    digitalWrite(led3,HIGH);
+    }
+  
+ 
+  delay(500);
+} 
